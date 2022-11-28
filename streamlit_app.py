@@ -95,21 +95,14 @@ this_start = data["parameters"]["start"]
 this_end = data["parameters"]["end"]
 this_report = data["samples"]
 
-st.write(
-    f"Displaying results for {this_utility} as measured from {this_start} to {this_end}"
-)
 
-pd.set_option("display.precision", 1)
 report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"]).sort_values(
     by="Date", ascending=False
 )
-report_frame["Date"] = pd.to_datetime(report_frame["Date"])
-# report_frame.style.format(
-#     {
-#         'Date': lambda x: "{}".format(x.strftime("%Y-%m-%d")),
-#         }
-#     ).set_table_styles('styles')
+
+# TODO: improve table formatting
+#report_frame["Date"] = pd.to_datetime(report_frame["Date"])
 
 st.bar_chart(report_frame, x="Date", y="Samples")
 
-st.dataframe(report_frame)
+st.table(report_frame)

@@ -101,7 +101,7 @@ report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"]).sort_value
 )
 
 # TODO: improve table formatting
-#report_frame["Date"] = pd.to_datetime(report_frame["Date"])
+report_frame["Date"] = pd.to_datetime(report_frame["Date"])
 
 st.bar_chart(report_frame, x="Date", y="Samples")
 

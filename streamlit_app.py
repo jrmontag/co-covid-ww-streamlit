@@ -14,25 +14,19 @@ st.set_page_config(
 
 st.title("Colorado COVID-19 Wastewater Data")
 
-st.write(
-    """
-All the same official data, without all the ArcGIS!
 
-- TODO: add context for why this exists
-- TODO: add links to CDPHE site
-- TODO: add some names for less obvious utilities around Denver
-"""
-)
-
-
+# TODO: add context for why this exists
+# TODO: add links to CDPHE site
+# TODO: add some names for less obvious utilities around Denver
+st.write("All the same official data, without all the ArcGIS!")
 
 # TODO: set up proper DNS
-base_url = 'http://146.190.50.82'
-utilities_q = '/api/utilities'
+base_url = "http://146.190.50.82"
+utilities_q = "/api/utilities"
 
 # TODO: cache this with ttl
 # TODO: add header info to id this app in access logs
-utilities = requests.get(base_url + utilities_q).json()['utilities']
+utilities = requests.get(base_url + utilities_q).json()["utilities"]
 
 # construct API query via dropdowns
 col1, col2 = st.columns(2)
@@ -69,11 +63,13 @@ this_start = data["parameters"]["start"]
 this_end = data["parameters"]["end"]
 this_report = data["samples"]
 
-st.write(f"Displaying results for {this_utility} as measured from {this_start} to {this_end}")
+st.write(
+    f"Displaying results for {this_utility} as measured from {this_start} to {this_end}"
+)
 
-report_frame = pd.DataFrame(this_report, columns=['Date', 'Samples'])
-report_frame['Date'] = pd.to_datetime(report_frame['Date'])
+report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"])
+report_frame["Date"] = pd.to_datetime(report_frame["Date"])
 
-st.bar_chart(report_frame, x='Date', y='Samples')
+st.bar_chart(report_frame, x="Date", y="Samples")
 
 st.table(report_frame)

@@ -32,22 +32,10 @@ handy when I'm trying to catch up on trends.
 Hi, I'm Josh 👋
 
 Feel free to say hi, ask questions, or make feature requests:
-🐦 [@jrmontag](https://twitter.com/jrmontag)
-🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
-
----
-
-Here are some Denver metro regions with less obvious utility names:
-- most of Denver, Lakewood, Englewood: `Metro WW - Platte/Central`
-- Arvada, Wheat Ridge, Westminster: `Metro WW - Clear Creek`
-- Centennial, Littleton, Ken Caryl: `South Platte`
-
-For maps of all utilities, check out 
-[the CDPHE page](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) (from a computer).
-
+- 🐦 [@jrmontag](https://twitter.com/jrmontag)
+- 🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
 """
 )
-st.write("")
 
 # TODO: set up proper DNS
 base_url = "http://146.190.50.82"
@@ -82,6 +70,17 @@ with col2:
     else:
         diff = timedelta(days=30 * 12 * 3)
     start = end - diff
+
+st.markdown(
+    """Here are some Denver metro regions with less obvious utility names:
+- most of Denver, Lakewood, Englewood: `Metro WW - Platte/Central`
+- Arvada, Wheat Ridge, Westminster: `Metro WW - Clear Creek`
+- Centennial, Littleton, Ken Caryl: `South Platte`
+
+For maps of all utilities, check out 
+[the CDPHE app](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) (from a computer).
+"""
+)
 
 api_q = (
     f"/api/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"

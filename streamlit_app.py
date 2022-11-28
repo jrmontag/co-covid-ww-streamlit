@@ -12,13 +12,42 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Colorado COVID-19 Wastewater Data")
+st.title("📱-friendly Colorado COVID-19 Wastewater Monitoring Data ✨")
 
+st.markdown(
+    """_All the same official data, without all the ArcGIS!_
 
-# TODO: add context for why this exists
-# TODO: add links to CDPHE site
-# TODO: add some names for less obvious utilities around Denver
-st.write("All the same official data, without all the ArcGIS!")
+---
+
+# What is this?
+The official COVID wastewater data from CDPHE, presented in a mobile-friendly format (fast and responsive).
+
+# Why is this?
+The state health department maintains a very cool, interactive, map-based 
+[website to monitor COVID wastewater](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
+sampling trends. However that site is nearly impossible to use on a mobile device, which is usually what I have 
+handy when I'm trying to catch up on trends.
+
+# Who is this?
+Hi, I'm Josh 👋
+
+Feel free to say hi, ask questions, or make feature requests:
+🐦 [@jrmontag](https://twitter.com/jrmontag)
+🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
+
+---
+
+Here are some Denver metro regions with less obvious utility names:
+- most of Denver, Lakewood, Englewood: `Metro WW - Platte/Central`
+- Arvada, Wheat Ridge, Westminster: `Metro WW - Clear Creek`
+- Centennial, Littleton, Ken Caryl: `South Platte`
+
+For maps of all utilities, check out 
+[the CDPHE page](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) (from a computer).
+
+"""
+)
+st.write("")
 
 # TODO: set up proper DNS
 base_url = "http://146.190.50.82"
@@ -28,22 +57,25 @@ utilities_q = "/api/utilities"
 # TODO: add header info to id this app in access logs
 utilities = requests.get(base_url + utilities_q).json()["utilities"]
 
-# construct API query via dropdowns
+# construct API query via dropdown selections
 col1, col2 = st.columns(2)
 with col1:
     utility = st.selectbox(
         label="Choose a wastewater utility",
         options=utilities,
+        # TODO: find metro platte programmatically
         index=38,
     )
 with col2:
     lookback = st.selectbox(
         label="Choose a lookback period",
-        options=("6 months", "12 months", "All history"),
+        options=("3 months", "6 months", "12 months", "All history"),
         index=0,
     )
     end = date.today()
-    if lookback == "6 months":
+    if lookback == "3 months":
+        diff = timedelta(days=30 * 3)
+    elif lookback == "6 months":
         diff = timedelta(days=30 * 6)
     elif lookback == "12 months":
         diff = timedelta(days=30 * 12)
@@ -67,9 +99,17 @@ st.write(
     f"Displaying results for {this_utility} as measured from {this_start} to {this_end}"
 )
 
-report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"])
+pd.set_option("display.precision", 1)
+report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"]).sort_values(
+    by="Date", ascending=False
+)
 report_frame["Date"] = pd.to_datetime(report_frame["Date"])
+# report_frame.style.format(
+#     {
+#         'Date': lambda x: "{}".format(x.strftime("%Y-%m-%d")),
+#         }
+#     ).set_table_styles('styles')
 
 st.bar_chart(report_frame, x="Date", y="Samples")
 
-st.table(report_frame)
+st.dataframe(report_frame)

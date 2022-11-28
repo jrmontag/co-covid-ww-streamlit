@@ -34,6 +34,8 @@ Hi, I'm Josh 👋
 Feel free to say hi, ask questions, or make feature requests:
 - 🐦 [@jrmontag](https://twitter.com/jrmontag)
 - 🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
+
+---
 """
 )
 

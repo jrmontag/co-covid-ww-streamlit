@@ -69,9 +69,10 @@ this_start = data["parameters"]["start"]
 this_end = data["parameters"]["end"]
 this_report = data["samples"]
 
-st.write(f"Displaying results for {this_utility} over range {this_start} - {this_end}")
+st.write(f"Displaying results for {this_utility} as measured from {this_start} to {this_end}")
 
-report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"])
+report_frame = pd.DataFrame(this_report, columns=['Date', 'Samples'])
+report_frame['Date'] = pd.to_datetime(report_frame['Date'])
 
 st.bar_chart(report_frame)
 

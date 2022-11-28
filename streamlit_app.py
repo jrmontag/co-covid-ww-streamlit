@@ -25,9 +25,14 @@ All the same official data, without all the ArcGIS!
 )
 
 
+
+# TODO: set up proper DNS
+base_url = 'http://146.190.50.82'
+utilities_q = '/api/utilities'
+
 # TODO: cache this with ttl
 # TODO: add header info to id this app in access logs
-utilities = requests.get("https://dummyjson.com/products/categories")
+utilities = requests.get(base_url + utilities_q).json()['utilities']
 
 # construct API query via dropdowns
 col1, col2 = st.columns(2)
@@ -35,7 +40,7 @@ with col1:
     utility = st.selectbox(
         label="Choose a wastewater utility",
         options=utilities,
-        index=0,
+        index=38,
     )
 with col2:
     lookback = st.selectbox(
@@ -52,14 +57,12 @@ with col2:
         diff = timedelta(days=30 * 12 * 3)
     start = end - diff
 
-# TODO: set up proper DNS
-base_url = "http://146.190.50.82"
-api_params = (
+api_q = (
     f"/api/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
 )
 
 # TODO: cache with ttl
-data = requests.get(base_url + api_params).json()
+data = requests.get(base_url + api_q).json()
 
 this_utility = data["parameters"]["utility"]
 this_start = data["parameters"]["start"]

@@ -74,6 +74,6 @@ st.write(f"Displaying results for {this_utility} as measured from {this_start} t
 report_frame = pd.DataFrame(this_report, columns=['Date', 'Samples'])
 report_frame['Date'] = pd.to_datetime(report_frame['Date'])
 
-st.bar_chart(report_frame)
+st.bar_chart(report_frame, x='Date', y='Samples')
 
 st.table(report_frame)

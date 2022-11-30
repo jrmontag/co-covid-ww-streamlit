@@ -28,14 +28,8 @@ The state health department maintains a very cool, interactive, map-based
 sampling trends. However that site is nearly impossible to use on a mobile device, which is usually what I have 
 handy when I'm trying to catch up on trends.
 
-# Who is this?
-Hi, I'm Josh 👋
-
-Feel free to say hi, ask questions, or make feature requests:
-- 🐦 [@jrmontag](https://twitter.com/jrmontag)
-- 🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
-
 ---
+
 """
 )
 
@@ -109,3 +103,14 @@ st.bar_chart(report_frame, x="Date", y="Samples")
 
 # st.table(report_frame)
 st.dataframe(report_frame.dropna(), use_container_width=True)
+
+st.markdown(
+    """# Who is this?
+Hi, I'm Josh 👋
+
+Feel free to say hi, ask questions, or make feature requests:
+- 🐦 [@jrmontag](https://twitter.com/jrmontag)
+- 🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
+
+    """
+)

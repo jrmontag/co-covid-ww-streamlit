@@ -73,8 +73,9 @@ st.markdown(
 - Arvada, Wheat Ridge, Westminster: `Metro WW - Clear Creek`
 - Centennial, Littleton, Ken Caryl: `South Platte`
 
-For maps of all utilities, check out 
-[the CDPHE app](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) (from a computer).
+For maps of all utilities and more information about the source data check out 
+[the CDPHE app](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
+(from a computer).
 """
 )
 

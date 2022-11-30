@@ -111,9 +111,9 @@ st.markdown(
     """# Who is this?
 Hi, I'm Josh 👋
 
-Feel free to say hi, ask questions, or make feature requests:
-- 🐦 [@jrmontag](https://twitter.com/jrmontag)
-- 🐙 [jrmontag](https://github.com/jrmontag/co-covid-ww-streamlit)
-
+Feel free to say hi, ask questions, make feature requests, or buy me a coffee!
+- :bird: [Twitter](https://twitter.com/jrmontag)
+- :octopus: [Github](https://github.com/jrmontag/co-covid-ww-streamlit)
+- :coffee: [Ko-fi](https://ko-fi.com/jrmontag)
     """
 )

@@ -92,10 +92,10 @@ this_report = data["samples"]
 
 
 date_col_name = "Date"
-samples_col_name = "Samples\n(SARS-CoV-2 copies/L)"
+samples_col_name = "Samples (SARS-CoV-2 copies/L)"
 report_frame = pd.DataFrame(
     this_report, columns=[date_col_name, samples_col_name]
-).sort_values(by="Date", ascending=False)
+).sort_values(by=date_col_name, ascending=False)
 
 # TODO: improve table formatting
 # TODO: cache resultant dataframe from construction and manipulation

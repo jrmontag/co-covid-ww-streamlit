@@ -91,15 +91,17 @@ this_end = data["parameters"]["end"]
 this_report = data["samples"]
 
 
-report_frame = pd.DataFrame(this_report, columns=["Date", "Samples\n(SARS-CoV-2 copies/L)"]).sort_values(
-    by="Date", ascending=False
-)
+date_col_name = "Date"
+samples_col_name = "Samples\n(SARS-CoV-2 copies/L)"
+report_frame = pd.DataFrame(
+    this_report, columns=[date_col_name, samples_col_name]
+).sort_values(by="Date", ascending=False)
 
 # TODO: improve table formatting
 # TODO: cache resultant dataframe from construction and manipulation
-report_frame["Date"] = pd.to_datetime(report_frame["Date"])
+report_frame[date_col_name] = pd.to_datetime(report_frame[date_col_name])
 
-st.bar_chart(report_frame, x="Date", y="Samples")
+st.bar_chart(report_frame, x=date_col_name, y=samples_col_name)
 
 # st.table(report_frame)
 st.dataframe(report_frame.dropna(), use_container_width=True)

@@ -91,7 +91,7 @@ this_end = data["parameters"]["end"]
 this_report = data["samples"]
 
 
-report_frame = pd.DataFrame(this_report, columns=["Date", "Samples"]).sort_values(
+report_frame = pd.DataFrame(this_report, columns=["Date", "Samples\n(SARS-CoV-2 copies/L)"]).sort_values(
     by="Date", ascending=False
 )
 

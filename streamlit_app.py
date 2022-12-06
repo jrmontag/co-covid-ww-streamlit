@@ -15,13 +15,12 @@ st.set_page_config(
 st.title("📱-friendly Colorado COVID-19 Wastewater Monitoring Data ✨")
 
 st.markdown(
-    """_All the same official data_ 📊 👍
-    _Without all the ArcGIS!_ 🗺 👎
+    """_All the same official data_ 📊 👍 _without all the ArcGIS!_ 🗺 👎
 
 ---
 
 # What is this?
-The official COVID wastewater data from CDPHE, presented in a mobile-friendly format (fast and responsive).
+The official COVID wastewater data from CDPHE, presented in a more mobile-friendly format (fast and responsive).
 
 # Why is this?
 The state health department maintains a very cool, interactive, map-based 
@@ -48,8 +47,7 @@ with col1:
     utility = st.selectbox(
         label="Choose a wastewater utility",
         options=utilities,
-        # TODO: find metro platte programmatically
-        index=38,
+        index=utilities.index("Metro WW - Platte/Central")
     )
 with col2:
     lookback = st.selectbox(

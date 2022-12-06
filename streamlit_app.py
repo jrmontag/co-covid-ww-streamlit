@@ -36,7 +36,7 @@ handy when I'm trying to catch up on trends.
 
 BASE_URL = "http://wastewater.jrmontag.xyz"
 API_ROOT = "/api/v1"
-UTILITIES_PATH = f"f{API_ROOT}/utilities"
+UTILITIES_PATH = f"{API_ROOT}/utilities"
 
 # TODO: cache this with ttl
 # TODO: add header info to id this app in access logs

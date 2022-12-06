@@ -16,7 +16,7 @@ st.title("📱-friendly Colorado COVID-19 Wastewater Monitoring Data ✨")
 
 st.markdown(
     """_All the same official data, without all the ArcGIS!_
-    
+
 📊👍
 🗺👎🏼
 
@@ -36,7 +36,7 @@ handy when I'm trying to catch up on trends.
 """
 )
 
-base_url = "http://wastewater.jrmontag.xyz/"
+base_url = "http://wastewater.jrmontag.xyz"
 utilities_q = "/api/utilities"
 
 # TODO: cache this with ttl

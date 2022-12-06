@@ -34,12 +34,13 @@ handy when I'm trying to catch up on trends.
 """
 )
 
-base_url = "http://wastewater.jrmontag.xyz"
-utilities_q = "/api/utilities"
+BASE_URL = "http://wastewater.jrmontag.xyz"
+API_ROOT = "/api/v1"
+UTILITIES_PATH = f"f{API_ROOT}/utilities"
 
 # TODO: cache this with ttl
 # TODO: add header info to id this app in access logs
-utilities = requests.get(base_url + utilities_q).json()["utilities"]
+utilities = requests.get(BASE_URL + UTILITIES_PATH).json()["utilities"]
 
 # construct API query via dropdown selections
 col1, col2 = st.columns(2)
@@ -79,12 +80,12 @@ For maps of all utilities and more information about the source data check out
 """
 )
 
-api_q = (
-    f"/api/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
+SAMPLES_PATH = (
+    f"{API_ROOT}/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
 )
 
 # TODO: cache with ttl
-data = requests.get(base_url + api_q).json()
+data = requests.get(BASE_URL + SAMPLES_PATH).json()
 
 this_utility = data["parameters"]["utility"]
 this_start = data["parameters"]["start"]

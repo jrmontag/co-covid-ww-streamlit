@@ -33,8 +33,7 @@ handy when I'm trying to catch up on trends.
 """
 )
 
-# TODO: set up proper DNS
-base_url = "http://146.190.50.82"
+base_url = "http://wastewater.jrmontag.xyz/"
 utilities_q = "/api/utilities"
 
 # TODO: cache this with ttl

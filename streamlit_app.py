@@ -15,7 +15,9 @@ st.set_page_config(
 st.title("📱-friendly Colorado COVID-19 Wastewater Monitoring Data ✨")
 
 st.markdown(
-    """_All the same official data_ 📊 👍 _without all the ArcGIS!_ 🗺 👎
+    """_All the same official data_ 📊 👍 
+
+_without all the ArcGIS!_ 🗺 👎
 
 ---
 
@@ -114,5 +116,11 @@ Feel free to say hi, ask questions, make feature requests, or buy me a coffee!
 - :bird: [Twitter](https://twitter.com/jrmontag)
 - :octopus: [Github](https://github.com/jrmontag/co-covid-ww-streamlit)
 - :coffee: [Ko-fi](https://ko-fi.com/jrmontag)
+    
+## Looking for more seasonal information?
+
+You might also be interested in the 
+[CDC's weekly update data on influenza](https://www.cdc.gov/flu/weekly/index.htm). 
+Take care of yourself out there!
     """
 )

@@ -15,9 +15,9 @@ st.set_page_config(
 st.title("📱-friendly Colorado COVID-19 Wastewater Monitoring Data ✨")
 
 st.markdown(
-    """_All the same official data_ 📊 👍 
+    """_All the same official data..._ 📊 
 
-_without all the ArcGIS!_ 🗺 👎
+_... without all the ArcGIS!_ 🗺
 
 ---
 

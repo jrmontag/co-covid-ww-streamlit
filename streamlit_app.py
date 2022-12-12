@@ -1,9 +1,22 @@
 from datetime import date, timedelta
 from time import time
+from typing import List, Optional
 import altair as alt
 import pandas as pd
 import requests
 import streamlit as st
+
+
+def get_utility_index(utilities: List[str], default="Metro WW - Platte/Central") -> int:
+    """Try to set Denver as the default utility.
+
+    In the event that something has changed in the underlying data, don't crash upon
+    not finding Platte/Central. Use whatever is present in that case.
+    """
+    result: int = 0
+    if default in utilities:
+        result = utilities.index(default)
+    return result
 
 
 st.set_page_config(
@@ -49,7 +62,7 @@ with col1:
     utility = st.selectbox(
         label="Choose a wastewater utility",
         options=utilities,
-        index=utilities.index("Metro WW - Platte/Central")
+        index=get_utility_index(utilities),
     )
 with col2:
     lookback = st.selectbox(
@@ -80,9 +93,7 @@ For maps of all utilities and more information about the source data check out
 """
 )
 
-SAMPLES_PATH = (
-    f"{API_ROOT}/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
-)
+SAMPLES_PATH = f"{API_ROOT}/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
 
 # TODO: cache with ttl
 data = requests.get(BASE_URL + SAMPLES_PATH).json()

@@ -22,4 +22,6 @@ Feel free to say hi, ask questions, or make feature requests:
 
 # I can haz more details?
 
-This is a very lightweight [Streamlit](streamlit.io/) UI to interact with the API I created to supply this data in a queryable fashion. You can see that (work in progress) project [over here](https://github.com/jrmontag/co-covid-ww).
+This is a lightweight [Streamlit](streamlit.io/) app to display data from the API I created to 
+supply this information in a queryable fashion. You can see that project 
+[over here](https://github.com/jrmontag/co-covid-ww).

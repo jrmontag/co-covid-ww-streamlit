@@ -33,20 +33,9 @@ st.markdown(
 _... without all the ArcGIS!_ 🗺
 
 ---
-
-# What is this?
-The official COVID wastewater data from CDPHE, presented in a more mobile-friendly format (fast and responsive).
-
-# Why is this?
-The state health department maintains a very cool, interactive, map-based 
-[website to monitor COVID wastewater](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
-sampling trends. However that site is nearly impossible to use on a mobile device, which is usually what I have 
-handy when I'm trying to catch up on trends.
-
----
-
 """
 )
+
 
 BASE_URL = "http://wastewater.jrmontag.xyz"
 API_ROOT = "/api/v1"
@@ -120,7 +109,17 @@ st.bar_chart(report_frame, x=date_col_name, y=samples_col_name)
 st.dataframe(report_frame.dropna(), use_container_width=True)
 
 st.markdown(
-    """# Who is this?
+    """
+# What is this?
+The official COVID wastewater data from CDPHE, presented in a more mobile-friendly format (fast and responsive).
+
+# Why is this?
+The state health department maintains a very cool, interactive, map-based 
+[website to monitor COVID wastewater](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
+sampling trends. However that site is nearly impossible to use on a mobile device, which is usually what I have 
+handy when I'm trying to catch up on trends.
+
+# Who is this?
 Hi, I'm Josh 👋
 
 Feel free to say hi, ask questions, make feature requests, or buy me a coffee!

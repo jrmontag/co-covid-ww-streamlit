@@ -36,7 +36,7 @@ _... without all the ArcGIS!_ 🗺
 
 st.warning(
     "Due to an ongoing issue, chart and table data are currently lagging. We're working on a fix!",
-    icon=":warning:"
+    icon="⚠️"
 )
 
 st.markdown("""

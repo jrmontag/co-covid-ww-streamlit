@@ -31,15 +31,7 @@ st.markdown(
     """_All the same official data..._ 📊 
 
 _... without all the ArcGIS!_ 🗺
-"""
-)
 
-st.warning(
-    "Due to an ongoing issue, chart and table data are currently lagging. We're working on a fix!",
-    icon=":warning:"
-)
-
-st.markdown("""
 ---
 """
 )

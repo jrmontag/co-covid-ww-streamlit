@@ -81,6 +81,10 @@ st.markdown(
 For maps of all utilities and more information about the source data check out 
 [the CDPHE app](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
 (from a computer).
+
+Note: data prior to July 2023 is labeld as "Phase 1," and data afterward is labeled as "Phase 2". 
+If interested, you can read more about this change 
+[here](https://data-cdphe.opendata.arcgis.com/datasets/CDPHE::cdphe-covid19-wastewater-dashboard-data/about).
 """
 )
 
@@ -110,7 +114,7 @@ report_frame[date_col_name] = pd.to_datetime(report_frame[date_col_name])
 st.bar_chart(report_frame, x=date_col_name, y=samples_cols_name)
 
 # TODO: check if both phase data is n/a before dropping
-st.dataframe(report_frame.dropna(), use_container_width=True)
+st.dataframe(report_frame.dropna(subset=samples_cols_name), use_container_width=True)
 
 st.markdown(
     """
@@ -134,6 +138,7 @@ Feel free to say hi, ask questions, make feature requests, or buy me a coffee!
 ## Looking for more seasonal health information?
 
 You might also be interested in these pointers:
+- [Another CDPHE dashboard (slightly more useable, but still desktop-first)](https://covid19.colorado.gov/data)
 - [Nationwide COVID-19 trends via biobot](https://biobot.io/data/covid-19)
 - [CDC's weekly update data on influenza](https://www.cdc.gov/flu/weekly/index.htm) 
 

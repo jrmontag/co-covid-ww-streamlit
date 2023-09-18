@@ -114,7 +114,7 @@ report_frame[date_col_name] = pd.to_datetime(report_frame[date_col_name])
 st.bar_chart(report_frame, x=date_col_name, y=samples_cols_name)
 
 # TODO: check if both phase data is n/a before dropping
-st.dataframe(report_frame.dropna(subset=samples_cols_name), use_container_width=True)
+st.dataframe(report_frame.dropna(thresh=2), use_container_width=True)
 
 st.markdown(
     """

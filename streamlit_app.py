@@ -70,6 +70,8 @@ with col2:
         diff = timedelta(days=30 * 12 * 3)
     start = end - diff
 
+# TODO: put note about "Phase 2" in this markdown block
+# https://data-cdphe.opendata.arcgis.com/datasets/CDPHE::cdphe-covid19-wastewater-dashboard-data/about
 st.markdown(
     """Here are some Denver metro regions with less obvious utility names:
 - most of Denver, Lakewood, Englewood: `Metro WW - Platte/Central`
@@ -82,7 +84,9 @@ For maps of all utilities and more information about the source data check out
 """
 )
 
-SAMPLES_PATH = f"{API_ROOT}/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
+SAMPLES_PATH = (
+    f"{API_ROOT}/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
+)
 
 # TODO: cache with ttl
 data = requests.get(BASE_URL + SAMPLES_PATH).json()
@@ -94,18 +98,18 @@ this_report = data["samples"]
 
 
 date_col_name = "Date"
-samples_col_name = "Samples (SARS-CoV-2 copies/L)"
-report_frame = pd.DataFrame(
-    this_report, columns=[date_col_name, samples_col_name]
-).sort_values(by=date_col_name, ascending=False)
+samples_cols_name = ["Phase 1 Samples (copies/L)", "Phase 2 Samples (copies/L)"]
+report_frame = pd.DataFrame(this_report, columns=[date_col_name, *samples_cols_name]).sort_values(
+    by=date_col_name, ascending=False
+)
 
 # TODO: improve table formatting
 # TODO: cache resultant dataframe from construction and manipulation
 report_frame[date_col_name] = pd.to_datetime(report_frame[date_col_name])
 
-st.bar_chart(report_frame, x=date_col_name, y=samples_col_name)
+st.bar_chart(report_frame, x=date_col_name, y=samples_cols_name)
 
-# st.table(report_frame)
+# TODO: check if both phase data is n/a before dropping
 st.dataframe(report_frame.dropna(), use_container_width=True)
 
 st.markdown(
@@ -127,10 +131,12 @@ Feel free to say hi, ask questions, make feature requests, or buy me a coffee!
 - :octopus: [Github](https://github.com/jrmontag/co-covid-ww-streamlit)
 - :coffee: [Ko-fi](https://ko-fi.com/jrmontag)
     
-## Looking for more seasonal information?
+## Looking for more seasonal health information?
 
-You might also be interested in the 
-[CDC's weekly update data on influenza](https://www.cdc.gov/flu/weekly/index.htm). 
+You might also be interested in these pointers:
+- [Nationwide COVID-19 trends via biobot](https://biobot.io/data/covid-19)
+- [CDC's weekly update data on influenza](https://www.cdc.gov/flu/weekly/index.htm) 
+
 Take care of yourself out there!
     """
 )

@@ -34,8 +34,8 @@ _... without all the ArcGIS!_ 🗺
 
 ---
 
-When the line in the chart is going up (or the numbers in the table), that means the selected 
-community has recently had an increase in the number of people with COVID infections. 
+:mega: When the line in the **chart is going up** (or the numbers in the table), that means the selected 
+**community has recently had an increase** in the number of people with COVID infections. 
 """
 )
 
@@ -112,7 +112,7 @@ report_frame[date_col_name] = pd.to_datetime(report_frame[date_col_name])
 
 st.bar_chart(report_frame, x=date_col_name, y=samples_cols_name)
 
-st.dataframe(report_frame.dropna(thresh=2), use_container_width=True)
+st.dataframe(report_frame.dropna(thresh=2), use_container_width=True, hide_index=True)
 
 st.markdown(
     """

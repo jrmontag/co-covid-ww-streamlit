@@ -33,6 +33,9 @@ st.markdown(
 _... without all the ArcGIS!_ 🗺
 
 ---
+
+When the line in the chart is going up (or the numbers in the table), that means the selected 
+community has recently had an increase in the number of people with COVID infections. 
 """
 )
 
@@ -41,8 +44,7 @@ BASE_URL = "http://wastewater.jrmontag.xyz"
 API_ROOT = "/api/v1"
 UTILITIES_PATH = f"{API_ROOT}/utilities"
 
-# TODO: cache this with ttl
-# TODO: add header info to id this app in access logs
+
 utilities = requests.get(BASE_URL + UTILITIES_PATH).json()["utilities"]
 
 # construct API query via dropdown selections
@@ -70,16 +72,15 @@ with col2:
         diff = timedelta(days=30 * 12 * 3)
     start = end - diff
 
-# TODO: put note about "Phase 2" in this markdown block
-# https://data-cdphe.opendata.arcgis.com/datasets/CDPHE::cdphe-covid19-wastewater-dashboard-data/about
+
 st.markdown(
     """Here are some Denver metro regions with less obvious utility names:
 - most of Denver, Lakewood, Englewood: `Metro WW - Platte/Central`
 - Arvada, Wheat Ridge, Westminster: `Metro WW - Clear Creek`
 - Centennial, Littleton, Ken Caryl: `South Platte`
 
-For maps of all utilities and more information about the source data check out 
-[the CDPHE app](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
+To find which utility corresponds to your community and more information about the source data, 
+check out [the CDPHE app](https://cdphe.maps.arcgis.com/apps/dashboards/d79cf93c3938470ca4bcc4823328946b) 
 (from a computer).
 
 Note: data prior to July 2023 is labeld as "Phase 1," and data afterward is labeled as "Phase 2". 
@@ -92,7 +93,7 @@ SAMPLES_PATH = (
     f"{API_ROOT}/samples?utility={utility}&start={start.isoformat()}&end={end.isoformat()}"
 )
 
-# TODO: cache with ttl
+
 data = requests.get(BASE_URL + SAMPLES_PATH).json()
 
 this_utility = data["parameters"]["utility"]
@@ -102,18 +103,15 @@ this_report = data["samples"]
 
 
 date_col_name = "Date"
-samples_cols_name = ["Phase 1 Samples (copies/L)", "Phase 2 Samples (copies/L)"]
+samples_cols_name = ["Phase 2 Samples (copies/L)", "Phase 1 Samples (copies/L)"]
 report_frame = pd.DataFrame(this_report, columns=[date_col_name, *samples_cols_name]).sort_values(
     by=date_col_name, ascending=False
 )
 
-# TODO: improve table formatting
-# TODO: cache resultant dataframe from construction and manipulation
 report_frame[date_col_name] = pd.to_datetime(report_frame[date_col_name])
 
 st.bar_chart(report_frame, x=date_col_name, y=samples_cols_name)
 
-# TODO: check if both phase data is n/a before dropping
 st.dataframe(report_frame.dropna(thresh=2), use_container_width=True)
 
 st.markdown(

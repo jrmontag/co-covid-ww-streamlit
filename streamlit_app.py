@@ -103,7 +103,7 @@ this_report = data["samples"]
 
 
 date_col_name = "Date"
-samples_cols_name = ["Phase 2 Samples (copies/L)", "Phase 1 Samples (copies/L)"]
+samples_cols_name = ["SARS-CoV-2 copies/L (Lab Phase 2)", "SARS-CoV-2 copies/L (Lab Phase 1)"]
 report_frame = pd.DataFrame(this_report, columns=[date_col_name, *samples_cols_name]).sort_values(
     by=date_col_name, ascending=False
 )

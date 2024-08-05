@@ -32,11 +32,11 @@ st.markdown(
 
 _... without all the ArcGIS!_ 🗺
 
-⚠️
+
 ⚠️ NOTE: **This site is unfortunately out of order** until further notice due to a recent overhaul of the CDPHE COVID-19 wastewater 
-⚠️    tracking site. Updated wastewater data appears to be [on this page](https://cdphe.colorado.gov/covid-19/wastewater) now, though 
-⚠️    beware that that page is somehow *even worse* than the original site for mobile devices.
-⚠️
+tracking site. Updated wastewater data appears to be [on this page](https://cdphe.colorado.gov/covid-19/wastewater) now, though 
+beware that that page is somehow *even worse* than the original site for mobile devices. ⚠️ 
+
 
 ---
 

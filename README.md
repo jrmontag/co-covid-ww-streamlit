@@ -1,3 +1,8 @@
+> [!NOTE]
+> This client project and the associated backend API have been deprecated - it was too costly to handle breaking changes from the data source. Those interested in the data and trends should refer to the current CDPHE dashboard ([here](https://cdphe.colorado.gov/dcphr/wastewater#dboard1) as of the time of writing) or other data available via the main CDPHE site. 
+
+---
+
 # 📱-friendly CO COVID-19 Wastewater Data ✨
 
 _All the same official data, without all the ArcGIS!_
